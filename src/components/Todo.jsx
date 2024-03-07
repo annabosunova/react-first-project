@@ -10,18 +10,21 @@ import React, { useState, useEffect } from "react";
  * that are displayed on the web page
  */
 function ToDo() {
+    // useState - React Hook that adds a state variable to a component
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState("");
 
-    // Load tasks from localStorage when component mounts
+    // load tasks from localStorage when component created and inserted into a DOM
     useEffect(() => {
         const storedTasks = JSON.parse(localStorage.getItem("tasks"));
+        // if there are tasks stored in the local storage,
+        // sets them using setTasks
         if (storedTasks) {
             setTasks(storedTasks);
         }
-    }, []);
+    }, []); // empty dependency array, only runs after the initial render
 
-    // Save tasks to localStorage whenever tasks change
+    // save tasks to localStorage whenever tasks change
     useEffect(() => {
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }, [tasks]);
