@@ -14,6 +14,7 @@ function ToDo() {
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState("");
 
+    // useEffect - React Hook that synchronizing the component's state with local storage
     // load tasks from localStorage when component created and inserted into a DOM
     useEffect(() => {
         const storedTasks = JSON.parse(localStorage.getItem("tasks"));
