@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from "react";
-
+/**
+ * function ToDo(): -> JSX elements
+ * 
+ * Component of the React App
+ * Describes the structure of HTML elements that will be rendered by React
+ * 
+ * @returns JSX elements of ToDo component
+ * when rendered, translated into HTML elements
+ * that are displayed on the web page
+ */
 function ToDo() {
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState("");
@@ -17,10 +26,24 @@ function ToDo() {
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }, [tasks]);
     
+    /**
+     * handleInputChange(event): event -> Void
+     * 
+     * on a given event updates setNewTask
+     * @param {Event} event - Input change event
+     * 
+     */
     function handleInputChange(event) {
         setNewTask(event.target.value);
     }
 
+    /**
+     * addTask(): -> Void
+     * 
+     * Adds a new task to the tasks list if it's not empty
+     * Clears the newTask state after adding
+     * 
+     */
     function addTask(){
         if(newTask.trim() !== ""){
             setTasks(t => [...t, newTask]);
@@ -28,11 +51,24 @@ function ToDo() {
         }
     }
 
+    /**
+     * deleteTask(index): index -> Void
+     * 
+     * Deletes a task from the tasks list based on its index
+     * @param {number} index - The index of the task to delete
+     * 
+     */
     function deleteTask(index){
         const updatedTasks = tasks.filter((_, i) => i !== index);
         setTasks(updatedTasks);
     }
 
+    /**
+     * moveTaskUp(index): index -> Void
+     * 
+     * Moves a task up in the tasks list based on its index
+     * @param {number} index - The index of the task to move up
+     */
     function moveTaskUp(index){
 
         if(index > 0){
@@ -43,6 +79,12 @@ function ToDo() {
         }
     }
 
+    /**
+     * moveTaskDown(index): index -> Void
+     * 
+     * Moves a task down in the tasks list based on its index
+     * @param {number} index - The index of the task to move down
+     */
     function moveTaskDown(index){
 
         if(index < tasks.length - 1){
